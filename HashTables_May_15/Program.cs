@@ -51,7 +51,7 @@ namespace HashTables_May_15
 
 
 
-            foreach (Employee e in empTable.Values)
+            foreach (Employee e in empTable.Values) //you can access all the information about what is stored in the hashtable along with the keys and the values by just using the name of the class as a pointer 
             {
                 Console.ForegroundColor=ConsoleColor.Cyan;
                 e.PrintInfo();
