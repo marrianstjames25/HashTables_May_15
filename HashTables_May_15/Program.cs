@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace HashTables_May_15
@@ -9,7 +10,7 @@ namespace HashTables_May_15
         static void Main(string[] args)
         {
             //Intro to HashTables and how to use them
-            Employee test = new Employee(1001,"John","Doe");
+            Employee test = new Employee(1001, "John", "Doe");
 
 
             test.PrintInfo();
@@ -21,26 +22,40 @@ namespace HashTables_May_15
             Hashtable empTable = new Hashtable();
             empTable.Add(test.EmployeeID, test);
 
+
+
             Employee empTest = (Employee)empTable[test.EmployeeID];
+
+            foreach (DictionaryEntry de in empTable)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Key: {0}, Value: {1}", de.Key, de.Value);
+                Console.ResetColor();
+            }
+
 
             empTest.PrintInfo();
 
             //How do we print bulk data from a hashtable 
 
-            foreach (int e in empTable.Keys) //print the keys of the hashtable
+            foreach (DictionaryEntry e in empTable) //print the keys of the hashtable
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(e);
-                Console.ResetColor();
 
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Employee tempEmp = (Employee)e.Value;
+                Employee testEmp_2 = (Employee)empTable[tempEmp.EmployeeID]; //Here we are trying to use indexing to access a specific element , although unless we convert it from an object reference to a class, we cannot do it
+                tempEmp.PrintInfo();
+                testEmp_2.PrintInfo();
+               
             }
 
-            foreach (DictionaryEntry e in empTable)
+
+
+            foreach (Employee e in empTable.Values)
             {
-
-                Employee tempEmp = (Employee)e.Value;
-                tempEmp.PrintInfo();
-
+                Console.ForegroundColor=ConsoleColor.Cyan;
+                e.PrintInfo();
+                Console.ResetColor();
 
             }
 
@@ -57,11 +72,12 @@ namespace HashTables_May_15
             {
                 Console.WriteLine("Please enter a valid ID");
                 inputEmpID = Console.ReadLine();
-                int.TryParse(inputEmpID, out  validEmpID);
-                         }
+                int.TryParse(inputEmpID, out validEmpID);
+            }
 
             Employee storedEmpID = (Employee)empTable[validEmpID];
             storedEmpID.PrintInfo();
+
 
 
 
