@@ -11,6 +11,9 @@ namespace HashTables_May_15
         {
             //Intro to HashTables and how to use them
             Employee test = new Employee(1001, "John", "Doe");
+            Employee test2 = new Employee(1002, "Mark", "Ford");
+            Employee test3 = new Employee(1003, "James", "Filler");
+            Employee test4 = new Employee(1004, "Monica", "Pollock");
 
 
             test.PrintInfo();
@@ -21,6 +24,9 @@ namespace HashTables_May_15
 
             Hashtable empTable = new Hashtable();
             empTable.Add(test.EmployeeID, test);
+            empTable.Add(test2.EmployeeID, test2);
+            empTable.Add(test3.EmployeeID, test3);
+            empTable.Add(test4.EmployeeID, test4);
 
 
 
